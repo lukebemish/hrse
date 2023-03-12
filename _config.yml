@@ -1,5 +1,6 @@
 title: HRSE - Human Readable S-Expressions
 repository: lukebemish/hrse
+author: Luke Bemish
 plugins:
   - jekyll-sitemap
   - jekyll-octicons
