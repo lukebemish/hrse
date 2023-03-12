@@ -1,0 +1,9 @@
+title: HRSE - Human Readable S-Expressions
+repository: lukebemish/hrse
+plugins:
+  - jekyll-sitemap
+  - jekyll-octicons
+  - jekyll-seo-tag
+remote_theme: jekyll/minima@2863624b903b17f838d6ce8d2f77900fa9d3c864
+minima:
+  skin: auto
