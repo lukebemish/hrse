@@ -1,0 +1,7 @@
+{{ if and (and .IsPage .File) (path.Base .File.Dir | eq "specs") }}
+  {{ if .File.BaseFileName | eq "dev" | not }}
+    <h1>{{ printf "%s - %s" .Title .File.BaseFileName }}</h1>
+  {{ else }}
+    <h1>{{ printf "%s" .Title }}</h1>
+  {{ end }}
+{{ end }}

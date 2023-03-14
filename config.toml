@@ -1,0 +1,14 @@
+baseURL = 'https://lukebemish.dev/hrse/'
+languageCode = 'en-us'
+title = 'HRSE'
+theme = 'hugo-book'
+author = 'Luke Bemish'
+disableKinds = ['taxonomyTerm']
+
+[params]
+  BookTheme = 'auto'
+  BookRepo = 'https://github.com/lukebemish/hrse'
+  BookEditPath = 'edit/main'
+  BookSearch = false
+
+  SpecVersions = ['v0.1.0']

@@ -1,0 +1,21 @@
+{{ $mainSection := "specs" }}
+{{ $versions := .Site.Params.SpecVersions }}
+{{ $section := where .Site.RegularPages "Section" "eq" $mainSection }}
+{{ $sectionv := where $section "File.BaseFileName" "in" (first 1 $versions) }}
+{{ $sectiond := where $section "File.BaseFileName" "eq" "dev" }}
+
+{{ $latest := "" }}
+
+{{ range $elem := $sectiond }}
+    {{ $latest = $elem.Permalink }}
+{{ end }}
+
+{{ range $elem := $sectionv }}
+    {{ $latest = $elem.Permalink }}
+{{ end }}
+
+{{ if eq $latest "" }}
+    {{ errorf "No latest version found for section \"%s\"" $mainSection }}
+{{ end }}
+
+{{ return $latest }}

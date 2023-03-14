@@ -1,0 +1,17 @@
+{{ $title := "" }}
+
+{{ if .LinkTitle }}
+  {{ $title = .LinkTitle }}
+{{ else if .Title }}
+  {{ $title = .Title }}
+{{ else if and .IsSection .File }}
+  {{ $title = path.Base .File.Dir | humanize | title }}
+{{ else if and .IsPage .File }}
+  {{ $title = .File.BaseFileName | humanize | title }}
+{{ end }}
+
+{{ if and (and .IsPage .File) (.File.BaseFileName | eq "dev" | not) (path.Base .File.Dir | eq "specs") }}
+  {{ $title = printf "%s | %s" $title .File.BaseFileName }}
+{{ end }}
+
+{{ return $title }}

@@ -1,5 +1,5 @@
 ---
-layout: home
+title: "Human Readable S-Expressions"
 ---
 
 HRSE is a config and data-serialization language offering a compromise bwtween the flexibility of a language such as JSON and

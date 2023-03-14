@@ -1,0 +1,34 @@
+{{ if .Page.File }}
+  <ul>
+    {{ $versions := .Site.Params.SpecVersions }}
+    {{ $parent := .Page.File.Dir }}
+    {{ $page := .Page }}
+    {{ $section := where .Site.RegularPages "Section" "eq" (.Page.Section) }}
+
+
+    {{ range $v := $versions }}
+      {{ warnf "%s" $v }}
+      {{ $current := eq $v $page.File.BaseFileName }}
+      {{ warnf (printf "%s%s" $parent $v) }}
+      {{ $pages := where $section "File.BaseFileName" "eq" $v | first 1 }}
+      {{ range $found := $pages }}
+        <li {{- if .Params.BookFlatSection }} class="book-section-flat" {{ end -}}>
+          <a href="{{ $found.Permalink }}" class="{{ if $current }}active{{ end }}">
+            {{ $v }}
+          </a>
+        </li>
+      {{ end }}
+    {{ end }}
+
+    {{ $v := "dev" }}
+    {{ $current := eq $v $page.File.BaseFileName }}
+    {{ $pages := where $section "File.BaseFileName" "eq" $v | first 1 }}
+    {{ range $found := $pages }}
+      <li {{- if .Params.BookFlatSection }} class="book-section-flat" {{ end -}}>
+        <a href="{{ $found.Permalink }}" class="{{ if $current }}active{{ end }}">
+          {{ $v }}
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
