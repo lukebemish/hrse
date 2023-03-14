@@ -132,7 +132,7 @@ The boolean literals `#t` and `#f` are supported.
 Symbols and strings represent the same data in HRSE. A symbol is a sequence of characters that obeys the following rules:
 * The first character may be any unicode character excepting the following:
   * characters in the `Zs` (space separator) and `Cc` (control) categories.
-  * the characters `+`, `-`, `(`, `)`, `"`, `'`, `'`, `:`, ';', and `#`.
+  * the characters `+`, `-`, `(`, `)`, `"`, `'`, `'`, `:`, `;`, and `#`.
   * the numeric characters `0` through `9`.
 * Subsequent characters follow the same rule, but allow the numeric characters `0` through `9`, `+`, and `-`.
 
