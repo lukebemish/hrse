@@ -11,5 +11,6 @@ enableRobotsTXT = true
   BookRepo = 'https://github.com/lukebemish/hrse'
   BookEditPath = 'edit/main'
   BookSearch = false
+  BookComments = false
 
   SpecVersions = ['v0.1.0']
