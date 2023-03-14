@@ -7,9 +7,7 @@
 
 
     {{ range $v := $versions }}
-      {{ warnf "%s" $v }}
       {{ $current := eq $v $page.File.BaseFileName }}
-      {{ warnf (printf "%s%s" $parent $v) }}
       {{ $pages := where $section "File.BaseFileName" "eq" $v | first 1 }}
       {{ range $found := $pages }}
         <li {{- if .Params.BookFlatSection }} class="book-section-flat" {{ end -}}>
