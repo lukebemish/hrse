@@ -20,20 +20,20 @@ s-expression, and in fact s-expressions should be valid members within a HRSE do
 
 ## Comments
 
-Single-line comments are denoted by a hash symbol at the beginning of the line:
+Single-line comments are denoted by a semicolon at the beginning of the line:
     
 ```hrse
-# This is a comment
+; This is a comment
 ```
 
-Multi-line comments are denoted by surrounding the comment with parentheses with any number of hash symbols. The comment will
-only end when the closing parenthesis with the same number of hash symbols is reached, without a hash symbol before it.
+Multi-line comments are denoted by surrounding the comment with parentheses with any number of semicolons. The comment will
+only end when the closing parenthesis with the same number of semicolons is reached, without a hash symbol before it.
 
 ```hrse
-(### This is
-     a multi-line comment ###)
-(# This is also a valid ##)
-   comment #)
+(;;; This is
+     a multi-line comment ;;;)
+(; This is also a valid ;;)
+   comment ;)
 ```
 
 ## S-Expressions
@@ -41,9 +41,9 @@ only end when the closing parenthesis with the same number of hash symbols is re
 HRSE allows s-expressions to be used within it. The s-expression syntax used by HRSE is as follows:
 
 ```hrse
-(1 2 3) # A list
-(a . b) # a pair
-()      # The empty list
+(1 2 3) ; A list
+(a . b) ; a pair
+()      ; The empty list
 ```
 
 A list of three elements, the second of which is the special symbol `.`, will always be parsed as a pair.
@@ -125,18 +125,16 @@ of the file will become an element of a list.
 
 ### Booleans
 
-The boolean literals `true` and `false` are supported, always lowercase.
+The boolean literals `#t` and `#f` are supported.
 
 ### Symbols and Strings
 
 Symbols and strings represent the same data in HRSE. A symbol is a sequence of characters that obeys the following rules:
 * The first character may be any unicode character excepting the following:
   * characters in the `Zs` (space separator) and `Cc` (control) categories.
-  * the characters `+`, `-`, `(`, `)`, `"`, `'`, `'`, `:`, and `#`.
+  * the characters `+`, `-`, `(`, `)`, `"`, `'`, `'`, `:`, ';', and `#`.
   * the numeric characters `0` through `9`.
 * Subsequent characters follow the same rule, but allow the numeric characters `0` through `9`, `+`, and `-`.
-
-Symbols may not take the same form as the boolean literal keywords `true` and `false`.
 
 Strings are a sequence of characters surrounded by double quotes. They may not cross lines or contain control characters
 (those in unicode category `Cc`). The following escape sequences are supported:
