@@ -183,3 +183,5 @@ followed optionally by a `+` or `-` sign, followed by a series of binary digits.
 +.05
 1.
 ```
+
+The special values `#inf` (or `+#inf`), `-#inf`, and `#nan` are also supported.
