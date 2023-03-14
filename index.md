@@ -27,7 +27,7 @@ Single-line comments are denoted by a semicolon at the beginning of the line:
 ```
 
 Multi-line comments are denoted by surrounding the comment with parentheses with any number of semicolons. The comment will
-only end when the closing parenthesis with the same number of semicolons is reached, without a hash symbol before it.
+only end when the closing parenthesis with the same number of semicolons is reached, without a semicolon before it.
 
 ```hrse
 (;;; This is
