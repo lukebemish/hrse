@@ -3,7 +3,8 @@ languageCode = 'en-us'
 title = 'HRSE'
 theme = 'hugo-book'
 author = 'Luke Bemish'
-disableKinds = ['taxonomyTerm']
+disableKinds = ['taxonomyTerm', 'section']
+enableRobotsTXT = true
 
 [params]
   BookTheme = 'auto'

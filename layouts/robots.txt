@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow: /$
+Sitemap: {{ printf "%ssitemap.xml" .Site.BaseURL }}
