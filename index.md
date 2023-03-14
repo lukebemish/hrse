@@ -14,8 +14,8 @@ s-expression, and in fact s-expressions should be valid members within a HRSE do
 
 * HRSE does not distinguish between strings and symbols. All strings are symbols, and all symbols are strings.
 * A HRSE file should be UTF-8 encoded.
-* Lines should end with either a newline ('U+000A') or a newline and a carriage return ('U+000D').
-* "whitespace", which does not include line breaks, consists of any nnumber of tabs ('U+0009') or characters in the `Zs`
+* Lines should end with either a newline (U+000A) or a newline and a carriage return (U+000D).
+* "whitespace", which does not include line breaks, consists of any number of tabs (U+0009) or characters in the `Zs`
   (space separator) unicode category.
 
 ## Comments
