@@ -8,7 +8,7 @@ sacrifices some ease of parsing for this purpose. Any HRSE document should have 
 s-expression, and in fact s-expressions should be valid members within a HRSE document.
 
 ## Implementations
-* Julia - [Hrse.jl](https://github.com/lukebemish/Hrse.jl)
+* Julia - [HumanReadableSExpressions.jl](https://github.com/lukebemish/HumanReadableSExpressions.jl)
 
 ## Specification
 
