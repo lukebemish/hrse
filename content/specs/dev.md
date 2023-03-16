@@ -154,12 +154,13 @@ Strings are a sequence of characters surrounded by double quotes. They may not c
 * `\000` - unicode character with the given codepoint. Can have anywhere from 1 to 3 octal digits, taking the longest match.
 
 {{< hint warning >}}
-Strings may not be immediately followed by a character valid in a symbol without a whitespace seperator. For instance, the
-following is not valid:
+Strings may not be immediately followed by a quote or a character valid in a symbol without a whitespace seperator. For
+instance, the following is not valid:
 ```
 list:
     "string"symbol
     "string"09
+    "string""string"
     "string"-2
     "string"+2
 ```
@@ -169,6 +170,7 @@ list:
     "string" symbol
     "string":2
     "string" .2
+    "string" "string"
 ```
 {{< /hint >}}
 
