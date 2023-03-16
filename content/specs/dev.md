@@ -15,8 +15,7 @@ s-expression, and in fact s-expressions should be valid members within a HRSE do
 * HRSE does not distinguish between strings and symbols. All strings are symbols, and all symbols are strings.
 * A HRSE file should be UTF-8 encoded.
 * Lines should end with either a newline (U+000A) or a newline and a carriage return (U+000D).
-* "whitespace", which does not include line breaks, consists of any number of tabs (U+0009) or characters in the `Zs`
-  (space separator) unicode category.
+* "whitespace", which does not include line breaks, consists of any number of tabs (U+0009) or spaces (U+0020).
 
 ## Comments
 
@@ -62,13 +61,15 @@ two representations are equivalent:
 a=1
 ```
 
-However, be careful! The implied parentheses are present even if the expression is placed within actual parentheses! For
+{{< hint warning >}}
+Be careful! The implied parentheses are present even if the expression is placed within actual parentheses! For
 instance, the following two representations are equivalent:
 
 ```hrse
 (a = 1)
 ((a . 1))
 ```
+{{< /hint >}}
 
 The use of the `:` character can also be used to represent a key-value pair. However, if the `:` character appears at the
 end of a line, followed only by whitespace, the next block is treated differently. The initial indentation level of the block
@@ -121,23 +122,24 @@ outer:
 A full HRSE file is treated as a single indented block, with the implicit indentation level of 0. This means that every line
 of the file will become an element of a list.
 
-## Literals
-
-### Booleans
+## Booleans
 
 The boolean literals `#t` and `#f` are supported.
 
-### Symbols and Strings
+## Symbols and Strings
 
 Symbols and strings represent the same data in HRSE. A symbol is a sequence of characters that obeys the following rules:
 * The first character may be any unicode character excepting the following:
-  * characters in the `Zs` (space separator) and `Cc` (control) categories.
+  * any sort of space separator (those in the `Z*` unicode categories)
+  * non-ascii punctuation (those in the `P*` unicode categories)
+  * control or format characters (those in the `C*` and `F*` unicode categories)
   * the characters `+`, `-`, `(`, `)`, `"`, `'`, `'`, `:`, `;`, and `#`.
-  * the numeric characters `0` through `9`.
-* Subsequent characters follow the same rule, but allow the numeric characters `0` through `9`, `+`, and `-`.
+  * numeric characters (those in the `N*` unicode categories)
+* Subsequent characters follow the same rule, but allow numeric characters, `-`, `+`, and punctuation from the `Pd`
+  and `Pc` categories.
 
 Strings are a sequence of characters surrounded by double quotes. They may not cross lines or contain control characters
-(those in unicode category `Cc`). The following escape sequences are supported:
+(those in unicode category `Cc`), except the tab character (U+0009). The following escape sequences are supported:
 * `\n` - newline
 * `\r` - carriage return
 * `\t` - tab
@@ -151,7 +153,74 @@ Strings are a sequence of characters surrounded by double quotes. They may not c
 * `\u{XXXX}` - unicode character with the given codepoint. Can have any number of case-insensitive hex digits, but must match a valid unicode character.
 * `\000` - unicode character with the given codepoint. Can have anywhere from 1 to 3 octal digits, taking the longest match.
 
-### Integers
+{{< hint warning >}}
+Strings may not be immediately followed by a character valid in a symbol without a whitespace seperator. For instance, the
+following is not valid:
+```
+list:
+    "string"symbol
+    "string"09
+    "string"-2
+    "string"+2
+```
+While the following is valid:
+```
+list:
+    "string" symbol
+    "string":2
+    "string" .2
+```
+{{< /hint >}}
+
+### Multiline Strings
+
+HRSE supports strings that span multiple lines through triple quotes (`"""`). Any single leading newline in the string will
+be trimmed.
+
+```hrse
+; These are equivalent
+
+"""
+The quick brown
+fox jumps over
+the lazy dog."""
+
+"The quick brown\nfox jumps over\nthe lazy dog."
+```
+
+A single `\` character followed by whitespace or a line break causes the character, and all whitespace and line breaks until
+the next non-whitespace non-line-break character, to be ignored:
+
+```hrse
+; These are equivalent
+
+"""
+The quick brown \
+    fox jumps over \
+  the lazy dog.\
+"""
+
+"The quick brown fox jumps over the lazy dog."
+```
+
+Additionally, multline strings support trimming leading indents from multiple lines. If every line starts with the same
+indentation as the line which opens the string, that indentation will be ignored:
+
+```
+strings:
+    ; leading whitespace is ignored here
+    """
+    The quick brown
+    fox jumps over
+    the lazy dog"""
+    
+    ; ...but not here
+    """    The quick brown
+    fox jumps over
+    the lazy dog"""
+```
+
+## Integers
 
 All types of integer literals may optionally be preceded by a `+` or `-` sign.
 
@@ -167,7 +236,7 @@ literals are case-insensitive.
 1_000_000
 ```
 
-### Floats
+## Floats
 
 Float literals take the form of a point character, `.`, surrounded on at least one side by a series of binary digits. Floats
 may optionally be preceded by a `+` or `-` sign. Floats may optionally be suffixed with an exponent, which is a `e` or `E`
