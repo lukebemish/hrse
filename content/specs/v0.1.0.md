@@ -133,7 +133,7 @@ Symbols and strings represent the same data in HRSE. A symbol is a sequence of c
   * any sort of space separator (those in the `Z*` unicode categories)
   * non-ascii punctuation (those in the `P*` unicode categories)
   * control or format characters (those in the `C*` unicode categories)
-  * the characters `+`, `-`, `(`, `)`, `"`, `'`, `'`, `:`, `;`, and `#`.
+  * the characters `+`, `-`, `(`, `)`, `"`, `'`, `'`, `:`, `;`, '.', and `#`.
   * numeric characters (those in the `N*` unicode categories)
 * Subsequent characters follow the same rule, but allow numeric characters, `-`, `+`, and punctuation from the `Pd`
   and `Pc` categories.
