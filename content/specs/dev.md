@@ -148,9 +148,7 @@ Strings are a sequence of characters surrounded by double quotes. They may not c
 * `\e` - escape
 * `\\` - backslash
 * `\"` - double quote
-* `\uXXXX` - unicode character with the given codepoint. Can have anywhere from 1 to 4 hex digits, taking the longest case-insensitive match.
-* `\UXXXXXXXX` - unicode character with the given codepoint. Can have anywhere from 1 to 8 hex digits, taking the longest case-insensitive match.
-* `\xXX` - unicode character with the given codepoint. Can have anywhere from 1 to 2 hex digits, taking the longest case-insensitive match.
+* `\u{XXXX}` - unicode character with the given codepoint. Can have any number of case-insensitive hex digits, but must match a valid unicode character.
 * `\000` - unicode character with the given codepoint. Can have anywhere from 1 to 3 octal digits, taking the longest match.
 
 ### Integers
