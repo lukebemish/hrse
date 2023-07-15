@@ -240,9 +240,9 @@ literals are case-insensitive.
 
 ## Floats
 
-Float literals take the form of a point character, `.`, surrounded on at least one side by a series of binary digits. Floats
+Float literals take the form of a point character, `.`, surrounded on at least one side by a series of decimal digits. Floats
 may optionally be preceded by a `+` or `-` sign. Floats may optionally be suffixed with an exponent, which is a `e` or `E`
-followed optionally by a `+` or `-` sign, followed by a series of binary digits. Underscores may be placed in float literals.
+followed optionally by a `+` or `-` sign, followed by a series of decimal digits. Underscores may be placed in float literals.
 
 ```hrse
 1.0
